@@ -57,7 +57,9 @@
   <h1>Pokedex</h1>
 
   <section class="info">
-    <button onclick="document.querySelector('#cards').innerHTML = '';localStorage.clear();fetchCards().then(drawCards)">Busca nous Pokemons</button>
+    <!-- <button onclick="document.querySelector('#cards').innerHTML = '';localStorage.clear();fetchCards().then(drawCards)">Busca nous Pokemons</button> -->
+    <button onclick="document.querySelector('#cards').innerHTML = '';localStorage.clear();location.reload()">Busca nous Pokemons</button> -->
+   
     <!-- Add the following input field to your HTML file -->
   <input type="text" id="search" placeholder="Search by name...">
 
