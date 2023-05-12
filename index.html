@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>URL Params</title>
+  <style>
+    .links {
+      display: inline-flex;
+      gap: 1rem;
+    }
+  </style>
+</head>
+<style>
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    max-width: 200px;
+    height: auto;
+    box-sizing: border-box;
+    background-color:#BADA55;
+    border: 4px solid;
+    border-radius: 6px;
+    box-shadow: 0 0 15px 5px #666;
+  }
+  .card .like {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: auto;
+  }
+  .card .like * {
+    cursor: pointer;
+  }
+  .card img {
+    max-width: 100%;
+  }
+  .info {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .info button {
+    cursor: pointer;
+  }
+</style>
+<body>
+  <h1>Hello URL Params</h1>
+
+  <section class="info">
+    <button onclick="fetchCards()">New fact</button>
+  </section>
+
+  Contenidor on es mostrarà el contingut segons
+  <p id="content">No hi ha cap paràmetre a la URL</p>
+
+  <div class="links">
+    <a class="link" href="?lletra=A" target="_self">obrir A</a>
+    <a class="link" href="?lletra=B" target="_self">obrir B</a>
+    <a class="link" href="?lletra=C" target="_self">obrir C</a>
+    <!-- Enllaç per tornar enrera, similar al del propi navegador -->
+    <a id="back" href="javascript:history.back()">Tornar</a>
+  </div>
+
+  <section id="cards" class="cards"></section>
+  
+  <template id="template">
+    <article id="" class="card">
+      <img src="" alt="">
+      <p class="name"></p>
+      <a class="detalls" href="" target="_self">Detalls</a>
+    </article>
+  </template>
+
+
+
+  <script>
+  /* https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams */
+
+
+  function fetchCards() {
+  const maxNumofPokemons = 1010;
+  const numCards = 10;
+  const cards = [];
+  for (let i = 0; i < numCards; i++) {
+    const pokemonId = Math.floor(Math.random() * maxNumofPokemons) + 1;
+    const url = `https://pokeapi.co/api/v2/pokemon/${pokemonId}`;
+    cards.push(fetch(url).then((response) => response.json()));
+  }
+  return Promise.all(cards).then((results) => {
+    localStorage.setItem("pokemonCards", JSON.stringify(results));
+    return results;
+  });
+}
+
+function drawCards(cards) {
+  const out = document.querySelector("#cards");
+  const temp = document.getElementById("template");
+  cards.forEach((fact) => {
+    const clonedTemplate = temp.content.cloneNode(true);
+    let card = clonedTemplate.querySelector(".card");
+    let name = clonedTemplate.querySelector(".name");
+    let img = clonedTemplate.querySelector("img");
+    let detalls = clonedTemplate.querySelector(".detalls");
+    card.setAttribute("id", fact.id);
+    name.textContent = fact.name;
+    img.setAttribute("src", fact.sprites.front_default);
+    detalls.setAttribute("href", `?PokeId=${fact.id}`);
+    out.appendChild(clonedTemplate);
+  });
+}
+
+
+  function getFact() {
+    
+    const maxNumofPokemons = 1010;
+    const pokemonId = Math.floor(Math.random() * maxNumofPokemons) + 1;
+    const url = `https://pokeapi.co/api/v2/pokemon/${pokemonId}`;
+    fetch(url)
+    .then( x => x.json() )
+    .then( fact => {
+
+  const out = document.querySelector('#cards'); // seleccionar el body y guardar-lo en una variable
+  const temp = document.getElementById('template'); // seleccionar el template i guardar-lo en una variable
+  const clonedTemplate = temp.content.cloneNode(true); // clonar el template
+
+  let card = clonedTemplate.querySelector('.card');
+  let name = clonedTemplate.querySelector('.name'); // seleccionar el p i guardar-lo en una variable
+  let img = clonedTemplate.querySelector('img'); // seleccionar la img i guardar-la en una variable
+  let detalls = clonedTemplate.querySelector('.detalls'); // seleccionar la label i guardar-la una variable
+
+console.log(fact.id);
+
+  card.setAttribute('id', fact.id); // assigna l'id rebut de la API
+  name.textContent = fact.name; // assigna el text rebut de la API
+  img.setAttribute('src', fact.sprites.front_default);
+  detalls.setAttribute('href', `?PokeId=${fact.id}`);
+
+
+  out.appendChild(clonedTemplate); // afegeix el clon amb tota la informació al section id="cards"
+  
+});
+}
+  
+  
+  
+  const cont = document.querySelector('#content');
+  const back = document.querySelector('#back');
+  const links = document.querySelectorAll('.link');
+
+  // ocultar l'enllaç per tornar enrera quan estem a la pàgina o ruta inicial (sense paràmetres a la url)
+  back.style.display = "none";
+
+  // // consultar si hi ha algun paràmetre a la URL
+  // let params = new URLSearchParams(document.location.search);
+  // let lletra = params.get("lletra");
+  // if (lletra) {
+  //   // modificar el text del missatge
+  //   cont.innerHTML = `El paràmetre de la url és <strong>${lletra}</strong>`;
+  //   // mostrar l'enllaç per tornar enrera
+  //   back.style.display = "block";
+  //   // mostrar els links només quan estem a la pàgina o ruta inicial (sense paràmetres a la url)
+  //   links.forEach( link => link.style.display = "none" );
+  // } else {
+  //   // modificar el text del missatge
+  //   cont.innerHTML = `No hi ha cap paràmetre a la URL`;
+  //   // ocultar l'enllaç per tornar enrera
+  //   back.style.display = "none";
+  //   // mostrar els links només quan estem a la pàgina o ruta inicial (sense paràmetres a la url)
+  //   links.forEach( link => link.style.display = "block" );
+  // }
+
+  // consultar si hi ha algun paràmetre a la URL
+  let params = new URLSearchParams(document.location.search);
+  let PokeId = params.get("PokeId");
+  if (PokeId) {
+    // modificar el text del missatge
+    cont.innerHTML = `El paràmetre de la url és <strong>${PokeId}</strong>`;
+    // mostrar l'enllaç per tornar enrera
+    back.style.display = "block";
+    // mostrar els links només quan estem a la pàgina o ruta inicial (sense paràmetres a la url)
+    links.forEach( link => link.style.display = "none" );
+  } else {
+    // modificar el text del missatge
+    cont.innerHTML = `No hi ha cap paràmetre a la URL`;
+    // ocultar l'enllaç per tornar enrera
+    back.style.display = "none";
+    // mostrar els links només quan estem a la pàgina o ruta inicial (sense paràmetres a la url)
+    links.forEach( link => link.style.display = "block" );
+
+    const pokemonCards = JSON.parse(localStorage.getItem("pokemonCards"));
+  if (pokemonCards && pokemonCards.length > 0) {
+    drawCards(pokemonCards);
+  } else {
+    fetchCards().then(drawCards);
+  }
+
+  }
+  </script>
+
+</body>
+</html>
