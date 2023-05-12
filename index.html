@@ -160,24 +160,6 @@ console.log(fact.id);
   // ocultar l'enllaç per tornar enrera quan estem a la pàgina o ruta inicial (sense paràmetres a la url)
   back.style.display = "none";
 
-  // // consultar si hi ha algun paràmetre a la URL
-  // let params = new URLSearchParams(document.location.search);
-  // let lletra = params.get("lletra");
-  // if (lletra) {
-  //   // modificar el text del missatge
-  //   cont.innerHTML = `El paràmetre de la url és <strong>${lletra}</strong>`;
-  //   // mostrar l'enllaç per tornar enrera
-  //   back.style.display = "block";
-  //   // mostrar els links només quan estem a la pàgina o ruta inicial (sense paràmetres a la url)
-  //   links.forEach( link => link.style.display = "none" );
-  // } else {
-  //   // modificar el text del missatge
-  //   cont.innerHTML = `No hi ha cap paràmetre a la URL`;
-  //   // ocultar l'enllaç per tornar enrera
-  //   back.style.display = "none";
-  //   // mostrar els links només quan estem a la pàgina o ruta inicial (sense paràmetres a la url)
-  //   links.forEach( link => link.style.display = "block" );
-  // }
 
   // consultar si hi ha algun paràmetre a la URL
   let params = new URLSearchParams(document.location.search);
@@ -189,6 +171,13 @@ console.log(fact.id);
     back.style.display = "block";
     // mostrar els links només quan estem a la pàgina o ruta inicial (sense paràmetres a la url)
     links.forEach( link => link.style.display = "none" );
+    
+    const pokemonCards = JSON.parse(localStorage.getItem("pokemonCards"));
+    // find pokemon card with matching id
+    const pokemonCard = pokemonCards.find(card => card.id === parseInt(PokeId));
+
+    console.dir(pokemonCard);
+
   } else {
     // modificar el text del missatge
     cont.innerHTML = `No hi ha cap paràmetre a la URL`;
