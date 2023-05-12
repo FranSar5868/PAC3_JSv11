@@ -81,7 +81,29 @@
     </article>
   </template>
 
+  <section id="card-details-container" class="card-details"></section>
 
+  <template id="card-details-template">
+    <div class="card-detail">
+      <img class="card-detail-image" src="" alt="">
+      <img class="card-detail-image-back" src="" alt="">
+      <h2 class="card-detail-title"></h2>
+      <div class="card-detail-stats">
+        <div class="card-detail-stat">
+          <div class="card-detail-stat-label">Attack</div>
+          <div class="card-detail-stat-value"></div>
+        </div>
+        <div class="card-detail-stat">
+          <div class="card-detail-stat-label">Defense</div>
+          <div class="card-detail-stat-value"></div>
+        </div>
+      </div>
+      <div class="card-detail-types">
+        <div class="card-detail-type"></div>
+      </div>
+    </div>
+  </template>
+  
 
   <script>
   /* https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams */
@@ -119,6 +141,39 @@ function drawCards(cards) {
   });
 }
 
+function showCardDetails(pokemonCard) {
+  const template = document.querySelector('#card-details-template');
+  const clone = template.content.cloneNode(true);
+
+  const title = clone.querySelector('.card-detail-title');
+  title.textContent = pokemonCard.name;
+
+  const image = clone.querySelector('.card-detail-image');
+  image.src = pokemonCard.sprites.front_default;
+  image.alt = pokemonCard.name;
+
+  const imageBack = clone.querySelector('.card-detail-image-back');
+  imageBack.src = pokemonCard.sprites.back_default;
+  imageBack.alt = pokemonCard.name;
+
+  const attackStat = clone.querySelector('.card-detail-stats .card-detail-stat:nth-child(1) .card-detail-stat-value');
+  attackStat.textContent = pokemonCard.stats[1].base_stat;
+
+  const defenseStat = clone.querySelector('.card-detail-stats .card-detail-stat:nth-child(2) .card-detail-stat-value');
+  defenseStat.textContent = pokemonCard.stats[2].base_stat;
+
+  const typeContainer = clone.querySelector('.card-detail-types');
+  pokemonCard.types.forEach(type => {
+    const typeElem = document.createElement('div');
+    typeElem.classList.add('card-detail-type');
+    typeElem.textContent = type.type.name;
+    typeContainer.appendChild(typeElem);
+  });
+
+  const container = document.querySelector('#card-details-container');
+  container.innerHTML = '';
+  container.appendChild(clone);
+}
 
   
   
@@ -146,7 +201,7 @@ function drawCards(cards) {
     const pokemonCards = JSON.parse(localStorage.getItem("pokemonCards"));
     // find pokemon card with matching id
     const pokemonCard = pokemonCards.find(card => card.id === parseInt(PokeId));
-
+    showCardDetails(pokemonCard);
     console.dir(pokemonCard);
 
   } else {
