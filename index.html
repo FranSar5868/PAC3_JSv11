@@ -185,6 +185,11 @@ function showCardDetails(pokemonCard) {
   const cont = document.querySelector('#content');
   const back = document.querySelector('#back');
   const links = document.querySelectorAll('.link');
+  const searchInput = document.getElementById("search");
+  
+
+ 
+
 
   // ocultar l'enllaç per tornar enrera quan estem a la pàgina o ruta inicial (sense paràmetres a la url)
   back.style.display = "none";
@@ -194,6 +199,8 @@ function showCardDetails(pokemonCard) {
   let params = new URLSearchParams(document.location.search);
   let PokeId = params.get("PokeId");
   if (PokeId) {
+
+    
     // modificar el text del missatge
     cont.innerHTML = `El paràmetre de la url és <strong>${PokeId}</strong>`;
     // mostrar l'enllaç per tornar enrera
@@ -208,6 +215,12 @@ function showCardDetails(pokemonCard) {
     console.dir(pokemonCard);
 
   } else {
+    
+    
+    
+    
+    
+    
     // modificar el text del missatge
     cont.innerHTML = `No hi ha cap paràmetre a la URL`;
     // ocultar l'enllaç per tornar enrera
@@ -217,18 +230,19 @@ function showCardDetails(pokemonCard) {
 
     const pokemonCards = JSON.parse(localStorage.getItem("pokemonCards"));
   if (pokemonCards && pokemonCards.length > 0) {
-    // drawCards(pokemonCards);
+    drawCards(pokemonCards);
 
-    const filterCards = (query) => {
-      const filteredCards = pokemonCards.filter (card => card.name.toLowerCase().includes(query.toLowerCase()));
-      document.querySelector('#cards').innerHTML = '';
-      drawCards(filteredCards);
-    }
-  const searchInput = document.getElementById("search");
-  searchInput.addEventListener("input", (event) => {
-    const query = event.target.value;
-    filterCards(query);
-  })
+  //   const filterCards = (query) => {
+  //     const filteredCards = pokemonCards.filter (card => card.name.toLowerCase().includes(query.toLowerCase()));
+  //     document.querySelector('#cards').innerHTML = '';
+  //     drawCards(filteredCards);
+  //   }
+  // // const searchInput = document.getElementById("search");
+  // searchInput.addEventListener("input", (event) => {
+  //   const query = event.target.value;
+  //   filterCards(query);
+  // })
+
 
 
   } else {
