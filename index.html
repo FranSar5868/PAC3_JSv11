@@ -130,7 +130,9 @@
 function drawCards(cards) {
   const out = document.querySelector("#cards");
   const temp = document.getElementById("template");
-  cards.forEach((fact) => {
+
+  
+    cards.forEach((fact) => {
     const clonedTemplate = temp.content.cloneNode(true);
     let card = clonedTemplate.querySelector(".card");
     let name = clonedTemplate.querySelector(".name");
@@ -215,10 +217,6 @@ function showCardDetails(pokemonCard) {
     console.dir(pokemonCard);
 
   } else {
-    
-    
-    
-    
     
     
     // modificar el text del missatge
