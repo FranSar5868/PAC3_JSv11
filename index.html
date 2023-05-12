@@ -54,10 +54,10 @@
   }
 </style>
 <body>
-  <h1>Hello URL Params</h1>
+  <h1>Pokedex</h1>
 
   <section class="info">
-    <button onclick="fetchCards()">New fact</button>
+    <button onclick="document.querySelector('#cards').innerHTML = '';localStorage.clear();fetchCards().then(drawCards)">Busca nous Pokemons</button>
   </section>
 
   Contenidor on es mostrarà el contingut segons
@@ -120,36 +120,7 @@ function drawCards(cards) {
 }
 
 
-  function getFact() {
-    
-    const maxNumofPokemons = 1010;
-    const pokemonId = Math.floor(Math.random() * maxNumofPokemons) + 1;
-    const url = `https://pokeapi.co/api/v2/pokemon/${pokemonId}`;
-    fetch(url)
-    .then( x => x.json() )
-    .then( fact => {
-
-  const out = document.querySelector('#cards'); // seleccionar el body y guardar-lo en una variable
-  const temp = document.getElementById('template'); // seleccionar el template i guardar-lo en una variable
-  const clonedTemplate = temp.content.cloneNode(true); // clonar el template
-
-  let card = clonedTemplate.querySelector('.card');
-  let name = clonedTemplate.querySelector('.name'); // seleccionar el p i guardar-lo en una variable
-  let img = clonedTemplate.querySelector('img'); // seleccionar la img i guardar-la en una variable
-  let detalls = clonedTemplate.querySelector('.detalls'); // seleccionar la label i guardar-la una variable
-
-console.log(fact.id);
-
-  card.setAttribute('id', fact.id); // assigna l'id rebut de la API
-  name.textContent = fact.name; // assigna el text rebut de la API
-  img.setAttribute('src', fact.sprites.front_default);
-  detalls.setAttribute('href', `?PokeId=${fact.id}`);
-
-
-  out.appendChild(clonedTemplate); // afegeix el clon amb tota la informació al section id="cards"
   
-});
-}
   
   
   
