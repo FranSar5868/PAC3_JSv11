@@ -58,6 +58,9 @@
 
   <section class="info">
     <button onclick="document.querySelector('#cards').innerHTML = '';localStorage.clear();fetchCards().then(drawCards)">Busca nous Pokemons</button>
+    <!-- Add the following input field to your HTML file -->
+  <input type="text" id="search" placeholder="Search by name...">
+
   </section>
 
   Contenidor on es mostrarà el contingut segons
@@ -214,7 +217,20 @@ function showCardDetails(pokemonCard) {
 
     const pokemonCards = JSON.parse(localStorage.getItem("pokemonCards"));
   if (pokemonCards && pokemonCards.length > 0) {
-    drawCards(pokemonCards);
+    // drawCards(pokemonCards);
+
+    const filterCards = (query) => {
+      const filteredCards = pokemonCards.filter (card => card.name.toLowerCase().includes(query.toLowerCase()));
+      document.querySelector('#cards').innerHTML = '';
+      drawCards(filteredCards);
+    }
+  const searchInput = document.getElementById("search");
+  searchInput.addEventListener("input", (event) => {
+    const query = event.target.value;
+    filterCards(query);
+  })
+
+
   } else {
     fetchCards().then(drawCards);
   }
