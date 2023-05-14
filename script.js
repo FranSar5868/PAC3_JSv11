@@ -80,23 +80,15 @@ function fetchCards() {
     const back = document.querySelector('#back');
     const links = document.querySelectorAll('.link');
     const searchInput = document.getElementById("search");
-    
-  
-   
-  
   
     // ocultar l'enllaç per tornar enrera quan estem a la pàgina o ruta inicial (sense paràmetres a la url)
     back.style.display = "none";
-  
   
     // consultar si hi ha algun paràmetre a la URL
     let params = new URLSearchParams(document.location.search);
     let PokeId = params.get("PokeId");
     if (PokeId) {
   
-      
-      // modificar el text del missatge
-      cont.innerHTML = `El paràmetre de la url és <strong>${PokeId}</strong>`;
       // mostrar l'enllaç per tornar enrera
       back.style.display = "block";
       // mostrar els links només quan estem a la pàgina o ruta inicial (sense paràmetres a la url)
@@ -114,29 +106,17 @@ function fetchCards() {
   
     } else {
       
-      
-      // modificar el text del missatge
-      cont.innerHTML = `No hi ha cap paràmetre a la URL`;
       // ocultar l'enllaç per tornar enrera
       back.style.display = "none";
-      // mostrar els links només quan estem a la pàgina o ruta inicial (sense paràmetres a la url)
-      links.forEach( link => link.style.display = "block" );
   
       const pokemonCards = JSON.parse(localStorage.getItem("pokemonCards"));
-  
-  
-    
-      
-      
       
       drawCards(pokemonCards);
-  
       const filterCards = (query) => {
         const filteredCards = pokemonCards.filter (card => card.name.toLowerCase().includes(query.toLowerCase()));
         document.querySelector('#cards').innerHTML = '';
         drawCards(filteredCards);
       }
-    // const searchInput = document.getElementById("search");
     searchInput.addEventListener("input", (event) => {
       const query = event.target.value;
       filterCards(query);
