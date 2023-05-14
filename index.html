@@ -75,7 +75,8 @@
     <a class="link" href="?lletra=B" target="_self">obrir B</a>
     <a class="link" href="?lletra=C" target="_self">obrir C</a>
     <!-- Enllaç per tornar enrera, similar al del propi navegador -->
-    <a id="back" href="javascript:history.back()">Tornar</a>
+    <!-- <a id="back" href="javascript:history.back()">Tornar</a> -->
+    <a id="back" href="javascript:history.back()" >Tornar</a>
 
   </div>
 
@@ -195,7 +196,7 @@ function fetchAndReload() {
   fetchCards().then(() => location.reload());
 }
   
-  
+
   const cont = document.querySelector('#content');
   const back = document.querySelector('#back');
   const links = document.querySelectorAll('.link');
