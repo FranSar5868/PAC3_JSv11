@@ -58,8 +58,9 @@
 
   <section class="info">
     <!-- <button onclick="document.querySelector('#cards').innerHTML = '';localStorage.clear();fetchCards().then(drawCards)">Busca nous Pokemons</button> -->
-    <button onclick="document.querySelector('#cards').innerHTML = '';localStorage.clear();location.reload()">Busca nous Pokemons</button>
+    <!-- <button onclick="document.querySelector('#cards').innerHTML = '';localStorage.clear();location.reload()">Busca nous Pokemons</button> -->
     <!-- <button onclick="document.querySelector('#cards').innerHTML = '';localStorage.clear()">Busca nous Pokemons</button> -->
+    <button onclick="fetchAndReload()">Busca nous Pokemons</button>
 
     <!-- Add the following input field to your HTML file -->
   <input type="text" id="search" placeholder="Search by name...">
@@ -185,7 +186,14 @@ function showCardDetails(pokemonCard) {
   container.appendChild(clone);
 }
 
+function fetchAndReload() {
+  // Clear the existing cards and local storage
+  document.querySelector('#cards').innerHTML = '';
+  localStorage.clear();
 
+  // Fetch new cards and reload the page
+  fetchCards().then(() => location.reload());
+}
   
   
   const cont = document.querySelector('#content');
@@ -233,7 +241,7 @@ function showCardDetails(pokemonCard) {
     const pokemonCards = JSON.parse(localStorage.getItem("pokemonCards"));
 
 
-  if (pokemonCards && pokemonCards.length > 0) {
+  
     
     
     
@@ -251,17 +259,6 @@ function showCardDetails(pokemonCard) {
   })
 
 
-
-  } else {
-
-    fetchCards().then(drawCards);
-    
-
-
-
-
-  }
-  
 
   }
 
