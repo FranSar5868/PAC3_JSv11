@@ -17,7 +17,7 @@
     <!-- <button onclick="document.querySelector('#cards').innerHTML = '';localStorage.clear();fetchCards().then(drawCards)">Busca nous Pokemons</button> -->
     <!-- <button onclick="document.querySelector('#cards').innerHTML = '';localStorage.clear();location.reload()">Busca nous Pokemons</button> -->
     <!-- <button onclick="document.querySelector('#cards').innerHTML = '';localStorage.clear()">Busca nous Pokemons</button> -->
-    <button onclick="fetchAndReload()">Busca nous Pokemons</button>
+    <button onclick="fetchAndReload()" id="buscar">Busca nous Pokemons</button>
 
     <!-- Add the following input field to your HTML file -->
   <input type="text" id="search" placeholder="Search by name...">
@@ -179,6 +179,10 @@ function fetchAndReload() {
     back.style.display = "block";
     // mostrar els links només quan estem a la pàgina o ruta inicial (sense paràmetres a la url)
     links.forEach( link => link.style.display = "none" );
+    // ocultar l'enllaç per buscar més pokemons
+    buscar.style.display = "none";
+    // ocultar l'enllaç per filtrar els pokemons
+    search.style.display = "none";
     
     const pokemonCards = JSON.parse(localStorage.getItem("pokemonCards"));
     // find pokemon card with matching id
