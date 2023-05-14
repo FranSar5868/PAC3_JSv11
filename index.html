@@ -58,12 +58,13 @@
 
   <section class="info">
     <!-- <button onclick="document.querySelector('#cards').innerHTML = '';localStorage.clear();fetchCards().then(drawCards)">Busca nous Pokemons</button> -->
-    <button onclick="document.querySelector('#cards').innerHTML = '';localStorage.clear();location.reload()">Busca nous Pokemons</button> -->
-   
+    <button onclick="document.querySelector('#cards').innerHTML = '';localStorage.clear();location.reload()">Busca nous Pokemons</button>
+    <!-- <button onclick="document.querySelector('#cards').innerHTML = '';localStorage.clear()">Busca nous Pokemons</button> -->
+
     <!-- Add the following input field to your HTML file -->
   <input type="text" id="search" placeholder="Search by name...">
-
   </section>
+
 
   Contenidor on es mostrarà el contingut segons
   <p id="content">No hi ha cap paràmetre a la URL</p>
@@ -74,6 +75,7 @@
     <a class="link" href="?lletra=C" target="_self">obrir C</a>
     <!-- Enllaç per tornar enrera, similar al del propi navegador -->
     <a id="back" href="javascript:history.back()">Tornar</a>
+
   </div>
 
   <section id="cards" class="cards"></section>
@@ -113,6 +115,7 @@
   <script>
   /* https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams */
 
+ 
 
   function fetchCards() {
   const maxNumofPokemons = 1010;
@@ -133,7 +136,7 @@ function drawCards(cards) {
   const out = document.querySelector("#cards");
   const temp = document.getElementById("template");
 
-  
+
     cards.forEach((fact) => {
     const clonedTemplate = temp.content.cloneNode(true);
     let card = clonedTemplate.querySelector(".card");
@@ -182,8 +185,7 @@ function showCardDetails(pokemonCard) {
   container.appendChild(clone);
 }
 
-  
-  
+
   
   
   const cont = document.querySelector('#content');
@@ -229,27 +231,41 @@ function showCardDetails(pokemonCard) {
     links.forEach( link => link.style.display = "block" );
 
     const pokemonCards = JSON.parse(localStorage.getItem("pokemonCards"));
+
+
   if (pokemonCards && pokemonCards.length > 0) {
+    
+    
+    
     drawCards(pokemonCards);
 
-  //   const filterCards = (query) => {
-  //     const filteredCards = pokemonCards.filter (card => card.name.toLowerCase().includes(query.toLowerCase()));
-  //     document.querySelector('#cards').innerHTML = '';
-  //     drawCards(filteredCards);
-  //   }
-  // // const searchInput = document.getElementById("search");
-  // searchInput.addEventListener("input", (event) => {
-  //   const query = event.target.value;
-  //   filterCards(query);
-  // })
+    const filterCards = (query) => {
+      const filteredCards = pokemonCards.filter (card => card.name.toLowerCase().includes(query.toLowerCase()));
+      document.querySelector('#cards').innerHTML = '';
+      drawCards(filteredCards);
+    }
+  // const searchInput = document.getElementById("search");
+  searchInput.addEventListener("input", (event) => {
+    const query = event.target.value;
+    filterCards(query);
+  })
 
 
 
   } else {
+
     fetchCards().then(drawCards);
-  }
+    
+
+
+
 
   }
+  
+
+  }
+
+  
   </script>
 
 </body>
