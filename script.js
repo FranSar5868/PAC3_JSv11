@@ -184,7 +184,7 @@ function fetchCards() {
       
       // ocultar l'enllaç per tornar enrera
       back.style.display = "none";
-  
+    
       const pokemonCards = JSON.parse(localStorage.getItem("pokemonCards"));
       
       drawCards(pokemonCards);

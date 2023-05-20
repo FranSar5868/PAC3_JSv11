@@ -25,7 +25,7 @@
 
 </header>
 
-  <h1>Pokedex</h1>
+  <h1 id="pokedex">Pokedex</h1>
 
   <section class="info">
     <button onclick="fetchAndReload()" id="buscar">Busca nous Pokemons</button>
@@ -36,10 +36,6 @@
 
   <!-- Contenidor on es mostrarà el contingut segons -->
   <p id="content"></p>
-
-  <div class="links">
-    <a id="back" href="javascript:history.back()" >Tornar</a>
-  </div>
 
   <section id="cards" class="cards"></section>
   
@@ -74,7 +70,9 @@
     </div>
   </template>
   
-
+  <div class="links">
+    <a id="back" href="javascript:history.back()" >Tornar</a>
+  </div>
   
 </body>
 </html>

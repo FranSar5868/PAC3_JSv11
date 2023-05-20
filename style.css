@@ -34,7 +34,7 @@ body.dark {
   }
   body.dark {
     --bg-color: #222;
-    --text-color: #eee;
+    --text-color: rgb(23, 238, 209);
   }
 }
 
@@ -48,12 +48,23 @@ h1 {
   text-align: center;
 }
 
-.links {
-    display: inline-flex;
-    gap: 1rem;
+  .links {
+    text-align: center;
+    margin-top: 20px;
   }
-
-
+  
+  .links a {
+    display: inline-block;
+    padding: 20px 40px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+  }
+  
 
 
   .cards {
@@ -101,7 +112,8 @@ h1 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #fff;
+    /* background-color: #fff; */
+    background-color:#da5151;
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
