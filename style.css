@@ -44,10 +44,18 @@ body {
   color: var(--text-color);
 }
 
+h1 {
+  text-align: center;
+}
+
 .links {
     display: inline-flex;
     gap: 1rem;
   }
+
+
+
+
   .cards {
     display: flex;
     flex-wrap: wrap;
@@ -87,3 +95,75 @@ body {
   .info button {
     cursor: pointer;
   }
+
+  .card-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .card-detail-image {
+    width: 200px;
+    height: auto;
+  }
+  
+  .card-detail-image-back {
+    width: 200px;
+    height: auto;
+  }
+  
+  .card-detail-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  .card-detail-stats {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+  }
+  
+  .card-detail-stat {
+    margin-right: 20px;
+  }
+  
+  .card-detail-stat-label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #888;
+  }
+  
+  .card-detail-stat-value {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .card-detail-types {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+  }
+  
+  .card-detail-type {
+    padding: 6px 12px;
+    background-color: #eee;
+    border-radius: 4px;
+    margin-right: 10px;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
