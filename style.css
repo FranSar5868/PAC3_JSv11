@@ -10,7 +10,7 @@ body.light {
 
 body.dark {
   --bg-color: #222;
-  --text-color: #eee;
+  --text-color: #0b4d2c;
 }
 
 
@@ -57,6 +57,7 @@ h1 {
     display: inline-block;
     padding: 20px 40px;
     background-color: #007bff;
+    /* max-width: 400px; */
     color: #fff;
     text-decoration: none;
     border-radius: 5px;
@@ -67,11 +68,26 @@ h1 {
   
 
 
-  .cards {
+  /* .cards {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
+  } */
+
+  .cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: left;
+    justify-content: left;
+    gap: 1rem;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(182, 12, 12, 0.1);
   }
+
+
   .card {
     display: flex;
     flex-direction: column;
@@ -107,7 +123,14 @@ h1 {
     cursor: pointer;
   }
 
-
+  .card .name {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: center;
+    color: #333;
+  }
+  
   .card .detalls {
     display: inline-block;
     padding: 10px 20px;
@@ -131,21 +154,20 @@ h1 {
     box-shadow: 0 0 0 2px #fff, 0 0 0 4px #007bff;
   }
   
-
-  .card-details {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    /* background-color: #fff; */
-    background-color:#da5151;
+  
+   .card-details {
+    margin: 0 auto;
+    background-color: #fff;
     border-radius: 8px;
     padding: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(182, 12, 12, 0.1);
+    max-width: 400px; /* Optional: Adjust the maximum width as needed */
   }
   
   .card-detail {
     display: flex;
+    background-color: #da5151;
+    border-radius: 8px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -181,7 +203,7 @@ h1 {
   .card-detail-stat-label {
     font-size: 14px;
     font-weight: bold;
-    color: #888;
+    color: #0c4fdf;
   }
   
   .card-detail-stat-value {
@@ -197,7 +219,7 @@ h1 {
   
   .card-detail-type {
     padding: 6px 12px;
-    background-color: #eee;
+    background-color: #0d7c60;
     border-radius: 4px;
     margin-right: 10px;
     font-size: 14px;
