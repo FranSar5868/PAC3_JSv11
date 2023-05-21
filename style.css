@@ -81,7 +81,8 @@ h1 {
     align-items: left;
     justify-content: left;
     gap: 1rem;
-    background-color: #fff;
+    /* background-color: #fff; */
+    background-color: var(--bg-color);
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 2px 4px rgba(182, 12, 12, 0.1);
@@ -157,7 +158,8 @@ h1 {
   
    .card-details {
     margin: 0 auto;
-    background-color: #fff;
+    /* background-color: #fff; */
+    background-color: var(--bg-color);
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 2px 4px rgba(182, 12, 12, 0.1);
